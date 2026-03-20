@@ -77,9 +77,11 @@ def train(config: SFTConfig):
         heart = Heartbeat(config.heartbeat.url)
 
     # Set precision
+    print("A")
     setup_torch_distributed(
         timeout=timedelta(seconds=config.dist_timeout_seconds), enable_gloo=config.model.fsdp_cpu_offload
     )
+    print("B")
     torch.set_float32_matmul_precision("high")
 
     # Initialize parallel dimensions
